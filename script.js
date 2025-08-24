@@ -444,138 +444,79 @@ function initChatbot() {
         }
     }
     
-  function getChatbotResponse(question) {
-    const lowerQuestion = question.toLowerCase().trim();
-    
-    // EXTENSION REQUESTS
-    if (/(how|can|what|way).*(request|get|ask for|apply for|extension|more time).*assignment|need.*(more|extra).*time|(extension|late).*policy|(can't|won't|unable to).*make.*deadline|(miss|late).*due date|due date.*passed|submit.*late|turn in.*after.*due|hand in.*late/i.test(lowerQuestion)) {
-        return "You have one 48-hour extension available per semester. Email your instructor within 24 hours of the original due date to request it. This extension cannot be used for the final essay or in-class assignments/exams.";
+    function getChatbotResponse(question) {
+        const lowerQuestion = question.toLowerCase().trim();
+        
+        // EXTENSION REQUESTS
+        if (/(how|can|what).*(request|get|ask for|apply for).*extension|need more time.*assignment|(extension|late).*policy|(can't|won't).*make.*deadline|(miss|late).*due date/i.test(lowerQuestion)) {
+            return "You have one 48-hour extension available per semester. Email your instructor within 24 hours of the original due date to request it. This extension cannot be used for the final essay or in-class assignments/exams.";
+        }
+        
+        // COURSE BASICS
+        if (/what('s| is).*(class|course|engl\s?380|english studies)|(can you|could you).*(tell me|explain).*(about|this).*class|what.*we.*do.*in.*class|describe.*(course|class)|overview.*of.*class|what.*cover.*in.*this.*class|what.*learn.*in.*(this|the).*class|what's.*the.*point.*of.*this.*class|why.*take.*this.*class/i.test(lowerQuestion)) {
+            return "ENGL 380 is an advanced course covering research methods, literary approaches, critical terminology, and advanced writing/analysis skills. You'll develop close-reading skills and learn to analyze various texts in cultural and historical contexts.";
+        }
+        
+        if (/(what|what's|what will|how).*(learn|gain|get from|take away from).*(class|course)|(skills|outcomes|abilities).*(from|in).*class|why.*take.*this.*class|what's.*the.*point.*of.*this.*class|how.*this.*class.*help.*me|what.*teach.*in.*this.*class|what.*get.*out.*of.*class|how.*improve.*(writing|reading).*in.*this.*class/i.test(lowerQuestion)) {
+            return "In this class, you'll learn advanced writing processes, literary terminology, how to analyze texts in context, understand critical movements, develop persuasive arguments through close reading, locate and evaluate scholarship, and synthesize literary and non-literary cultural expressions.";
+        }
+        
+        // SCHEDULE & ATTENDANCE
+        if (/(when|what time|where|what days).*(class|meet|lecture|session).*(schedule|time|location|room|as243)|(class|lecture).*(schedule|time|meet|location)|(day|time).*of.*class|when.*we.*meet|what.*are.*class.*hours|(where|when).*is.*(class|lecture)|how.*often.*we.*meet/i.test(lowerQuestion)) {
+            return "Our class meets in person on Mondays and Wednesdays from 2:00–3:50 PM in Room AS243.";
+        }
+        
+        if (/(attendance|absent|miss|late|tardy).*(policy|rule|requirement|grade|count|drop)|how many.*(absences|misses|lates).*allowed|what happens if.*(miss|absent|late)|(can|what if) I.*(miss|skip).*class|(number|amount) of.*(absences|misses)|(consequences|penalty).*for.*(missing|absence)|(will|does).*(missing|absence).*(affect|drop).*grade|show up.*required/i.test(lowerQuestion)) {
+            return "More than two unexcused absences will lower your final grade. Excused absences require documentation for illness, family emergencies, religious reasons, jury duty, or university activities.";
+        }
+        
+        // MATERIALS
+        if (/(do|have to|need to|must|should|are we).*(buy|purchase|get|bring|need).*(textbook|book|materials|readings)|(is|are).*textbook.*(required|needed)|(what|which).*books.*(need|required)|(how much|cost).*textbook|(where|how).*get.*textbook|(do we|can I).*use.*(ebook|pdf)|(required|course).*materials/i.test(lowerQuestion)) {
+            return "Required texts: 1) Garrett-Petts' 'Writing about Literature', 2) Shakespeare's 'Hamlet' (Norton Critical Edition), 3) Shelley's 'Frankenstein' (Broadview Press), and 4) Stevens' 'Literary Theory and Criticism'. All must be the specified editions.";
+        }
+        
+        // ASSIGNMENTS
+        if (/how many.*essays|writing assignments/i.test(lowerQuestion)) {
+            return "You'll write two major essays: a short paper (1,250–1,500 words) and a final term paper (2,500–3,000 words).";
+        }
+        
+        if (/research paper|final paper|final term paper|big paper/i.test(lowerQuestion)) {
+            return "The final term paper is a significant 2,500–3,000 word project that combines close reading with theoretical perspective and is supported by secondary scholarly research.";
+        }
+        
+        if (/annotated bibliography|bibliography/i.test(lowerQuestion)) {
+            return "The annotated bibliography requires at least six academic sources from library collections or databases like JSTOR, Project Muse, or MLA Bibliographies. It's worth 10% of your grade.";
+        }
+        
+        if (/conference presentation|presentation/i.test(lowerQuestion)) {
+            return "The conference presentation is a 10% component where you'll present your research findings in a conference-style format.";
+        }
+        
+        if (/midterm|exam|quiz|quizzes/i.test(lowerQuestion)) {
+            return "There's a midterm exam (10%) with multiple choice, short response, and close reading questions. Regular reading comprehension quizzes (10% total) are administered through Canvas.";
+        }
+        
+        // GRADING
+        if (/grading scale|how.*graded/i.test(lowerQuestion)) {
+            return "Grading scale: A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (Below 60%). Final grades are not rounded up.";
+        }
+        
+        if (/grade breakdown|grading breakdown|how much is.*worth|what percent of my grade is.*|weight.*assignments|grade.*based.*on|how.*get.*a|how.*pass.*class|how.*pass/i.test(lowerQuestion)) {
+            return "Grade composition: Participation (20%), Essays (40% - short paper 15%, final paper 25%), Annotated Bibliography (10%), Exams and Quizzes (20% - midterm 10%, quizzes 10%), Conference Presentation (10%).";
+        }
+        
+        // POLICIES
+        if (/late work|submit.*late|turn in.*late|hand in.*late|late.*turn.*in|late.*submit|late.*hand.*in/i.test(lowerQuestion)) {
+            return "Late work penalties: <1 hour (5%), 1 class day (10%), 2 class days (20%), >1 week (max 50%). One 48-hour extension available per semester (not for final essay or exams).";
+        }
+        
+        if (/plagiarism|can i use AI|AI|academic integrity/i.test(lowerQuestion)) {
+            return "Plagiarism, self-plagiarism, or unauthorized AI use results in a zero and possible course failure. Limited AI use for minor tasks is acceptable but must be cited. All submissions are checked through Turnitin.";
+        }
+        
+        // DEFAULT RESPONSE
+        return "I'm not sure I understand. Try checking the syllabus, rephrasing your question, or asking your instructor during office hours.";
     }
-    
-    // COURSE BASICS
-    if (/what('s| is| are).*(class|course|engl\s?380|english studies)|(can you|could you|would you).*(tell me|explain|describe).*(about|this).*class|what.*we.*do.*in.*class|describe.*(course|class)|overview.*of.*class|what.*cover.*in.*this.*class|what.*learn.*in.*(this|the).*class|what's.*the.*point.*of.*this.*class|why.*take.*this.*class|purpose.*of.*this.*course|what.*expect.*from.*this.*class/i.test(lowerQuestion)) {
-        return "ENGL 380 is an advanced course covering research methods, literary approaches, critical terminology, and advanced writing/analysis skills. You'll develop close-reading skills and learn to analyze various texts in cultural and historical contexts.";
-    }
-    
-    if (/(what|what's|what will|how).*(learn|gain|get from|take away from).*(class|course)|(skills|outcomes|abilities).*(from|in).*class|why.*take.*this.*class|what's.*the.*point.*of.*this.*class|how.*this.*class.*help.*me|what.*teach.*in.*this.*class|what.*get.*out.*of.*class|how.*improve.*(writing|reading).*in.*this.*class|course.*objectives|learning.*goals/i.test(lowerQuestion)) {
-        return "In this class, you'll learn advanced writing processes, literary terminology, how to analyze texts in context, understand critical movements, develop persuasive arguments through close reading, locate and evaluate scholarship, and synthesize literary and non-literary cultural expressions.";
-    }
-    
-    // INSTRUCTOR INFO
-    if (/(who|what).*(professor|instructor|teacher|lecturer)|name.*of.*(professor|instructor)|contact.*(professor|instructor)|how.*contact.*(professor|instructor)|email.*(professor|instructor)|office.*hours|when.*office.*hours|where.*office|meet.*professor/i.test(lowerQuestion)) {
-        return "Your instructor is Professor Smith. Office hours are Tuesdays and Thursdays from 10:00 AM–12:00 PM in Room HL321. You can email at smith@university.edu or schedule an appointment via Canvas.";
-    }
-    
-    // SCHEDULE & ATTENDANCE
-    if (/(when|what time|where|what days).*(class|meet|lecture|session).*(schedule|time|location|room|as243)|(class|lecture).*(schedule|time|meet|location)|(day|time).*of.*class|when.*we.*meet|what.*are.*class.*hours|(where|when).*is.*(class|lecture)|how.*often.*we.*meet|classroom.*location|where.*class.*held/i.test(lowerQuestion)) {
-        return "Our class meets in person on Mondays and Wednesdays from 2:00–3:50 PM in Room AS243.";
-    }
-    
-    if (/(attendance|absent|miss|late|tardy).*(policy|rule|requirement|grade|count|drop)|how many.*(absences|misses|lates).*allowed|what happens if.*(miss|absent|late)|(can|what if) I.*(miss|skip).*class|(number|amount) of.*(absences|misses)|(consequences|penalty).*for.*(missing|absence)|(will|does).*(missing|absence).*(affect|drop).*grade|show up.*required|excused.*absence|what.*counts.*as.*excused/i.test(lowerQuestion)) {
-        return "More than two unexcused absences will lower your final grade. Excused absences require documentation for illness, family emergencies, religious reasons, jury duty, or university activities.";
-    }
-    
-    // MATERIALS & TEXTBOOKS
-    if (/(do|have to|need to|must|should|are we).*(buy|purchase|get|bring|need).*(textbook|book|materials|readings)|(is|are).*textbook.*(required|needed)|(what|which).*books.*(need|required)|(how much|cost).*textbook|(where|how).*get.*textbook|(do we|can I).*use.*(ebook|pdf)|(required|course).*materials|bookstore.*list|what.*books.*for.*class|reading.*list/i.test(lowerQuestion)) {
-        return "Required texts: 1) Garrett-Petts' 'Writing about Literature', 2) Shakespeare's 'Hamlet' (Norton Critical Edition), 3) Shelley's 'Frankenstein' (Broadview Press), and 4) Stevens' 'Literary Theory and Criticism'. All must be the specified editions.";
-    }
-    
-    if (/where.*find.*(readings|books|textbooks)|library.*reserve|are.*books.*at.*library|can.*borrow.*books|cheaper.*alternatives|used.*books|rent.*books/i.test(lowerQuestion)) {
-        return "Some textbooks may be on reserve at the library. You can check the library catalog or ask at the circulation desk. Used or rental options are available through online retailers and the campus bookstore.";
-    }
-    
-    // ASSIGNMENTS
-    if (/how many.*(essays|papers|assignments)|writing assignments|types.*of.*assignments|what.*assignments|graded.*work/i.test(lowerQuestion)) {
-        return "You'll write two major essays: a short paper (1,250–1,500 words) and a final term paper (2,500–3,000 words). Additional assignments include an annotated bibliography, conference presentation, midterm exam, and reading quizzes.";
-    }
-    
-    if (/research paper|final paper|final term paper|big paper|major paper|capstone|final project/i.test(lowerQuestion)) {
-        return "The final term paper is a significant 2,500–3,000 word project that combines close reading with theoretical perspective and is supported by secondary scholarly research. It's due during finals week and worth 25% of your grade.";
-    }
-    
-    if (/annotated bibliography|bibliography|sources.*required|research.*sources/i.test(lowerQuestion)) {
-        return "The annotated bibliography requires at least six academic sources from library collections or databases like JSTOR, Project Muse, or MLA Bibliographies. It's worth 10% of your grade and due in Week 10.";
-    }
-    
-    if (/conference presentation|presentation|speech|talk|present.*research/i.test(lowerQuestion)) {
-        return "The conference presentation is a 10% component where you'll present your research findings in a conference-style format during the last two weeks of class. Each presentation should be 8-10 minutes with visual aids.";
-    }
-    
-    if (/midterm|exam|quiz|quizzes|test|final exam/i.test(lowerQuestion)) {
-        return "There's a midterm exam (10%) with multiple choice, short response, and close reading questions. Regular reading comprehension quizzes (10% total) are administered through Canvas. There is no final exam—the final paper serves as your culminating assessment.";
-    }
-    
-    if (/when.*due.*(paper|assignment|essay)|due dates|schedule.*of.*assignments|assignment.*calendar|what.*due.*when/i.test(lowerQuestion)) {
-        return "Major due dates: Short paper (Week 5), Midterm (Week 7), Annotated Bibliography (Week 10), Conference Presentation (Weeks 13-14), Final Paper (Finals Week). Check Canvas for exact dates and all reading quiz deadlines.";
-    }
-    
-    if (/how.*long.*(paper|essay)|word.*count|page.*requirement|length.*of.*paper/i.test(lowerQuestion)) {
-        return "The short paper should be 1,250–1,500 words (approx. 5-6 pages). The final paper should be 2,500–3,000 words (approx. 10-12 pages). All papers should be double-spaced with 12pt Times New Roman font and 1-inch margins.";
-    }
-    
-    if (/citation.*style|formatting|MLA|APA|how.*format.*paper|reference.*style/i.test(lowerQuestion)) {
-        return "All written work should follow MLA 9th edition formatting and citation guidelines. The library offers citation guides and workshops, and the Purdue OWL website is an excellent resource for MLA style questions.";
-    }
-    
-    // GRADING
-    if (/grading scale|how.*graded|letter.*grades|percentage.*scale|what.*(A|B|C|D|F)/i.test(lowerQuestion)) {
-        return "Grading scale: A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (Below 60%). Final grades are not rounded up.";
-    }
-    
-    if (/grade breakdown|grading breakdown|how much is.*worth|what percent of my grade is.*|weight.*assignments|grade.*based.*on|how.*get.*a|how.*pass.*class|how.*pass|points.*system|percentage.*each.*assignment/i.test(lowerQuestion)) {
-        return "Grade composition: Participation (20%), Essays (40% - short paper 15%, final paper 25%), Annotated Bibliography (10%), Exams and Quizzes (20% - midterm 10%, quizzes 10%), Conference Presentation (10%).";
-    }
-    
-    if (/how.*check.*grades|where.*see.*grades|canvas.*grades|when.*grades.*posted|final.*grade.*when/i.test(lowerQuestion)) {
-        return "Grades for individual assignments are posted on Canvas within 7-10 days of the due date. Final course grades are available through the university portal approximately 3-5 days after the final exam period ends.";
-    }
-    
-    // POLICIES
-    if (/late work|submit.*late|turn in.*late|hand in.*late|late.*turn.*in|late.*submit|late.*hand.*in|missed.*deadline|past.*due.*date/i.test(lowerQuestion)) {
-        return "Late work penalties: <1 hour (5%), 1 class day (10%), 2 class days (20%), >1 week (max 50%). One 48-hour extension available per semester (not for final essay or exams).";
-    }
-    
-    if (/plagiarism|can i use AI|AI|academic integrity|cheating|academic honesty|cite.*sources|turnitin/i.test(lowerQuestion)) {
-        return "Plagiarism, self-plagiarism, or unauthorized AI use results in a zero and possible course failure. Limited AI use for minor tasks is acceptable but must be cited. All submissions are checked through Turnitin.";
-    }
-    
-    if (/participation|class.*discussion|speak.*in.*class|contribute|involvement/i.test(lowerQuestion)) {
-        return "Participation (20% of grade) includes contributing to discussions, asking thoughtful questions, active listening, and engagement with peers. Quality matters more than quantity. See the rubric on Canvas for evaluation criteria.";
-    }
-    
-    if (/group work|collaboration|work.*together|team.*project|peer.*review/i.test(lowerQuestion)) {
-        return "Some activities involve collaboration, but all major assignments are individual work. Peer review workshops will be held for the essays—these are required and count toward your participation grade.";
-    }
-    
-    // TECHNOLOGY & CANVAS
-    if (/canvas|online|portal|website|where.*find.*(materials|resources)|upload.*assignments|submit.*online|digital.*submission/i.test(lowerQuestion)) {
-        return "Canvas is our course management system. You'll find readings, assignments, grades, and announcements there. Assignments should be submitted as PDF or Word documents through Canvas unless otherwise instructed.";
-    }
-    
-    if /(technology|computer|internet).*(problems|issues|trouble)|can't.*access.*canvas|submit.*won't.*work|technical.*difficulties/i.test(lowerQuestion)) {
-        return "For technical issues with Canvas, contact the university IT help desk at ithelp@university.edu or 555-1234. Always keep backups of your work and submit early to avoid last-minute technical problems.";
-    }
-    
-    // SUPPORT RESOURCES
-    if (/(writing center|tutoring|help.*with.*writing|writing.*help|tutor)|improve.*my.*writing/i.test(lowerQuestion)) {
-        return "The University Writing Center offers free tutoring sessions. You can make appointments for help with any stage of the writing process. They're located in Library Room 200 and open Monday-Friday 9AM-5PM.";
-    }
-    
-    if (/(library|research|databases|find.*sources|scholarly.*articles|books.*article)/i.test(lowerQuestion)) {
-        return "The library offers research assistance through subject librarians, online databases (JSTOR, Project Muse, MLA Bibliography), and research guides. You can schedule a research consultation for help with your annotated bibliography and final paper.";
-    }
-    
-    if (/(accommodations|disability|accessibility|learning.*needs|ADA)/i.test(lowerQuestion)) {
-        return "If you need accommodations, contact the Disability Resource Center (DRC) at drc@university.edu or 555-5678. They will provide official documentation to share with me. All discussions remain confidential.";
-    }
-    
-    if (/(mental health|stress|anxious|overwhelmed|counseling|wellness)/i.test(lowerQuestion)) {
-        return "The University Counseling Center offers confidential support services. Contact them at 555-HELP or counseling@university.edu. Remember to maintain balance between coursework and self-care throughout the semester.";
-    }
-    
-    // DEFAULT RESPONSE
-    return "I'm not sure I understand. Try checking the syllabus, rephrasing your question, or asking your instructor during office hours. You might also find answers in the course FAQ on Canvas.";
-}
     
     // Toggle chatbot visibility and show initial greeting
     chatbotToggle.addEventListener('click', () => {
@@ -584,7 +525,7 @@ function initChatbot() {
         // Only add greeting if this is the first open
         if (chatbotWidget.classList.contains('active') && chatbotMessages.children.length === 0) {
             addMessage(
-                "Hello! I can answer questions about the ENGL 380 syllabus. Try asking about grading, attendance, or course policies.",
+                "Hark, scholars! The ENGL 380 syllabus lies open before thee. Ask of grading, attendance, or the ordinances of the course, and I shall make all plain.",
                 false,
                 true
             );
