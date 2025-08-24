@@ -6,51 +6,130 @@
     <title>ENGL 380 - Approaches to English Studies</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="cursor"></div>
+    <div class="cursor">📚</div>
     
+    <!-- Enhanced Navigation -->
     <nav class="syllabus-nav">
-        <div class="nav-logo">ENGL 380</div>
-        <div class="nav-links">
-            <a href="#description">Description</a>
-            <a href="#structure">Structure</a>
-            <a href="#grading">Grading</a>
-            <a href="#policies">Policies</a>
-            <a href="#resources">Resources</a>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-book-open"></i>
+                <span>ENGL 380-03</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#description">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Description</span>
+                </a>
+                <a href="#structure">
+                    <i class="fas fa-book"></i>
+                    <span>Structure</span>
+                </a>
+                <a href="#grading">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Grading</span>
+                </a>
+                <a href="#policies">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Policies</span>
+                </a>
+                <a href="#resources">
+                    <i class="fas fa-tools"></i>
+                    <span>Resources</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-action-btn" id="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="nav-search" id="nav-search">
+            <form id="search-form">
+                <input type="text" placeholder="Search syllabus..." id="search-input">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="search-results" id="search-results"></div>
         </div>
     </nav>
     
-    <div class="syllabus-container">
+       <div class="syllabus-container">
+        <!-- Hero Section -->
         <section class="hero">
-            <h1>ENGL 380 - Approaches to English Studies</h1>
-            <p class="hero-subtitle">Section 03 - Classroom: AS243</p>
+            <div class="hero-content">
+                <h1>ENGL 380 - Approaches to English Studies</h1>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        Term
+                        <span>Spring 2025</span>
+                    </div>
+                    <div class="meta-item">
+                        Location
+                        <span>AS243</span>
+                    </div>
+                    <div class="meta-item">
+                        Instructor
+                        <span>Liliana De Simone</span>
+                    </div>
+                    <div class="meta-item">
+                        Office Hours
+                        <span>MW 11:00 AM–12:00 PM</span>
+                    </div>
+                </div>
+            </div>
             
-            <div class="course-meta">
-                <div class="meta-item">
-                    Term
-                    <span>Spring 2025</span>
+            <!-- Enhanced Quote Carousel -->
+            <div class="quote-carousel-container">
+                <div class="quote-carousel">
+                    <div class="book-corner"></div>
+                    <div class="page-edge"></div>
+                    
+                    <div class="quote">
+                        <p class="quote-text">"The pen is mightier than the sword."</p>
+                        <span class="quote-author">- Edward Bulwer-Lytton</span>
+                    </div>
+                    
+                    <div class="quote">
+                        <p class="quote-text">"So many books, so little time."</p>
+                        <span class="quote-author">- Frank Zappa</span>
+                    </div>
+                    
+                    <div class="quote">
+                        <p class="quote-text">"A reader lives a thousand lives before he dies."</p>
+                        <span class="quote-author">- George R.R. Martin</span>
+                    </div>
+                    
+                    <div class="quote">
+                        <p class="quote-text">"Literature is the art of discovering something extraordinary about ordinary people, and saying with ordinary words something extraordinary."</p>
+                        <span class="quote-author">- Boris Pasternak</span>
+                    </div>
                 </div>
-                <div class="meta-item">
-                    Format
-                    <span>In-Person</span>
-                </div>
-                <div class="meta-item">
-                    Instructor
-                    <span>Liliana De Simone</span>
-                </div>
-                <div class="meta-item">
-                    Office Hours
-                    <span>MW 11:00 AM–12:00 PM</span>
+                
+                <button class="carousel-nav carousel-prev">❮</button>
+                <button class="carousel-nav carousel-next">❯</button>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-dot active"></button>
+                    <button class="carousel-dot"></button>
+                    <button class="carousel-dot"></button>
+                    <button class="carousel-dot"></button>
                 </div>
             </div>
         </section>
-        
-        <div class="quick-nav">
-            <a href="#grading">Grading Breakdown</a>
-            <a href="#policies">Course Policies</a>
-            <a href="#resources">Student Resources</a>
-        </div>
         
         <section class="section" id="description">
             <h2 class="section-title">Course Description</h2>
@@ -76,7 +155,7 @@
             </div>
         </section>
         
-        <section class="section" id="structure">
+       <section class="section" id="structure">
             <h2 class="section-title">Course Structure</h2>
             <div class="card">
                 <h3>Required Texts</h3>
@@ -156,12 +235,12 @@
                 
                 <div class="highlight-box" style="margin-top: 1.5rem;">
                     <h3>Final Grade Scale</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
-                        <span style="padding: 0.5rem 1rem; background: #e8f5e9; border-radius: 4px;">A 90-100%</span>
-                        <span style="padding: 0.5rem 1rem; background: #e3f2fd; border-radius: 4px;">B 80-89%</span>
-                        <span style="padding: 0.5rem 1rem; background: #fff8e1; border-radius: 4px;">C 70-79%</span>
-                        <span style="padding: 0.5rem 1rem; background: #ffebee; border-radius: 4px;">D 60-69%</span>
-                        <span style="padding: 0.5rem 1rem; background: #f5f5f5; border-radius: 4px;">F Below 60%</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; justify-content: center;"">
+                        <span style="padding: 0.5rem 1rem; border-radius: 4px;">A 90-100%</span>
+                        <span style="padding: 0.5rem 1rem; border-radius: 4px;">B 80-89%</span>
+                        <span style="padding: 0.5rem 1rem; border-radius: 4px;">C 70-79%</span>
+                        <span style="padding: 0.5rem 1rem; border-radius: 4px;">D 60-69%</span>
+                        <span style="padding: 0.5rem 1rem; border-radius: 4px;">F Below 60%</span>
                     </div>
                     <p style="margin-top: 1rem; font-size: 0.9rem;"><em>Note: Final grades will not be rounded up.</em></p>
                 </div>
@@ -243,14 +322,12 @@
     <!-- Chatbot Widget -->
     <div class="chatbot-widget">
         <button class="chatbot-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-            <span>Questions</span>
+            <img src="https://uploads.onecompiler.io/43qq5fh8c/43ukf4p36/shakespeare-clipart-lg.png" alt="William Shakespeare" class="shakespeare-icon">
+            <span>Ask Will</span>
         </button>
         <div class="chatbot-container">
             <div class="chatbot-header">
-                <h3>I'm just a robot! Sometimes I'm wrong.</h3>
+                <h3>To be on time, or not to be on time...</h3>
                 <button class="chatbot-close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
