@@ -445,111 +445,111 @@ function initChatbot() {
         }
     }
     
-    function getChatbotResponse(question) {
+function getChatbotResponse(question) {
     const lowerQuestion = question.toLowerCase().trim();
     
     // EXTENSION REQUESTS
     if (/(how|can|what).*(request|get|ask for|apply for).*extension|need more time.*assignment|(extension|late).*policy|(can't|won't).*make.*deadline|(miss|late).*due date|life happens extension/i.test(lowerQuestion)) {
-        return "You have one 48-hour 'Life Happens' extension available per semester. Just email me to let me know you'd like to use it—no explanation needed. This extension cannot be used for the final essay or in-class assignments/exams. Regular late work penalties: <1 hour (5%), 1 class day (10%), 2 class days (20%), >1 week (max 50%).";
+        return "You have one 48-hour 'Life Happens' extension available per semester. Just email me to let me know you'd like to use it—no explanation needed. This extension cannot be used for the final essay. Late work penalties: <1 hour (5%), <24 hours (10%), <1 week (20%), >1 week (max 50%).";
     }
     
     // COURSE BASICS
     if (/what('s| is).*(class|course|engl\s?380|english studies)|(can you|could you).*(tell me|explain).*(about|this).*class|what.*we.*do.*in.*class|describe.*(course|class)|overview.*of.*class|what.*cover.*in.*this.*class|what.*learn.*in.*(this|the).*class|what's.*the.*point.*of.*this.*class|why.*take.*this.*class/i.test(lowerQuestion)) {
-        return "ENGL 380 is an advanced course covering research methods; approaches to literary, rhetorical, and pedagogical topics; critical and literary terminology; genre; and advanced skills in writing and analysis. You'll develop close-reading skills and learn to analyze various texts in cultural and historical contexts. Prerequisite: English 184 or equivalent.";
+        return "ENGL 380 is an advanced course covering research methods; approaches to literary, rhetorical, and pedagogical topics; critical and literary terminology; genre; and advanced skills in writing and analysis. You'll analyze poetry, fiction, drama, and nonfiction, and build research and rhetorical skills. Prerequisite: English 184 or equivalent.";
     }
     
     if (/(what|what's|what will|how).*(learn|gain|get from|take away from).*(class|course)|(skills|outcomes|abilities).*(from|in).*class|why.*take.*this.*class|what's.*the.*point.*of.*this.*class|how.*this.*class.*help.*me|what.*teach.*in.*this.*class|what.*get.*out.*of.*class|how.*improve.*(writing|reading).*in.*this.*class/i.test(lowerQuestion)) {
-        return "In this class, you'll learn to: demonstrate advanced writing processes; develop persuasive arguments through close reading; distinguish between literary genres; place literature in socio-historical contexts; use literary terminology; analyze rhetorical strategies in criticism; locate and evaluate scholarship; draw connections between texts; and show awareness of different pedagogical methods.";
+        return "In this class, you'll learn to: demonstrate advanced writing processes; develop persuasive arguments through close reading; distinguish between literary genres; place literature in socio-historical contexts; use literary terminology; analyze rhetorical strategies; locate and evaluate scholarship; draw connections between texts; and show awareness of pedagogical methods.";
     }
     
     // SCHEDULE & ATTENDANCE
-    if (/(when|what time|where|what days).*(class|meet|lecture|session).*(schedule|time|location|room|as243)|(class|lecture).*(schedule|time|meet|location)|(day|time).*of.*class|when.*we.*meet|what.*are.*class.*hours|(where|when).*is.*(class|lecture)|how.*often.*we.*meet/i.test(lowerQuestion)) {
-        return "Our class meets in person on Mondays and Wednesdays from 2:00–3:50 PM in Room AS243.";
+    if (/(when|what time|where|what days).*(class|meet|lecture|session).*(schedule|time|location|room|mhb510)|(class|lecture).*(schedule|time|meet|location)|(day|time).*of.*class|when.*we.*meet|what.*are.*class.*hours|(where|when).*is.*(class|lecture)|how.*often.*we.*meet/i.test(lowerQuestion)) {
+        return "Class meets in person. See the syllabus for specific days/times. Instructor office hours: Tues/Thurs 12-2 p.m. in MHB510, plus by appointment.";
     }
     
     if (/(attendance|absent|miss|late|tardy).*(policy|rule|requirement|grade|count|drop)|how many.*(absences|misses|lates).*allowed|what happens if.*(miss|absent|late)|(can|what if) I.*(miss|skip).*class|(number|amount) of.*(absences|misses)|(consequences|penalty).*for.*(missing|absence)|(will|does).*(missing|absence).*(affect|drop).*grade|show up.*required/i.test(lowerQuestion)) {
-        return "More than two unexcused absences will lower your final grade. More than six unexcused absences will result in a 0 for attendance/participation. Excused absences require documentation for illness, family emergencies, religious reasons, jury duty, or university activities. Your two free absences are for circumstances like car trouble, minor illness, work conflicts, etc.";
+        return "More than two unexcused absences lowers your final grade by 5% each. More than six results in a 0 for attendance/participation. Excused absences require documentation (illness, family emergency, religious, jury duty, university activities). Two free absences are for minor issues like traffic or minor illness.";
     }
     
     // MATERIALS
     if (/(do|have to|need to|must|should|are we).*(buy|purchase|get|bring|need).*(textbook|book|materials|readings)|(is|are).*textbook.*(required|needed)|(what|which).*books.*(need|required)|(how much|cost).*textbook|(where|how).*get.*textbook|(do we|can I).*use.*(ebook|pdf)|(required|course).*materials/i.test(lowerQuestion)) {
-        return "Required texts: 1) Garrett-Petts' 'Writing about Literature' (2nd ed.), 2) Shakespeare's 'Hamlet' (Norton Critical Edition, 2nd ed.), 3) Shelley's 'Frankenstein' (Broadview Press, 3rd ed.), and 4) Stevens' 'Literary Theory and Criticism' (2nd ed.). All must be the specified editions. Additional readings are posted on Canvas.";
+        return "Required texts: 1) Shakespeare's 'Hamlet' (Norton Critical Ed., 2nd), 2) Shelley's 'Frankenstein' (Broadview, 3rd), 3) Stevens' 'Literary Theory and Criticism' (Broadview, 2nd). Additional readings are on Canvas. Use the specified editions.";
     }
     
     // ASSIGNMENTS
     if (/close reading paper|close reading|first paper|short paper/i.test(lowerQuestion)) {
-        return "The Close Reading Paper is a 1250-1500 word analytical essay focusing on a single primary text. You'll advance an arguable thesis supported by textual evidence. It's worth 20% of your grade. You may revise and resubmit it after final grades are posted with a 300-word revision statement.";
+        return "The Close Reading Paper is 1250-1500 words, focusing on a single primary text. You'll argue a thesis with textual evidence. Worth 15% of your grade. You may revise/resubmit after final grades with a 300-word revision statement.";
     }
     
-    if (/annotated bibliography|bibliography/i.test(lowerQuestion)) {
-        return "The Annotated Bibliography requires at least six credible academic sources relevant to your final paper. For each source, provide a correct MLA citation and an annotation summarizing its argument, evaluating methodology, and reflecting on its utility for your research. It's worth 10% of your grade.";
+    if (/q h q|qhq|question hypothesis question/i.test(lowerQuestion)) {
+        return "QHQs are informal discussion board posts due the night before class. Pose an analytical question, hypothesize an answer with evidence, and end with a new question. 10 of 15 required, each at least 250 words with one citation. Worth 10% of your grade.";
     }
     
     if (/response papers|response assignments/i.test(lowerQuestion)) {
-        return "Response Papers are a series of six short writing assignments providing sequenced practice in core methodologies of literary scholarship. These low-stakes exercises build foundational skills for major papers and informed class discussion. Your grade (15%) is based on engagement and completion.";
+        return "Response Papers are short writing assignments to practice literary scholarship methods. They're low-stakes and build skills for major papers and discussion. Worth 10% of your grade, based on engagement/completion.";
     }
     
-    if (/research paper|final paper|final term paper|big paper|theoretical paper/i.test(lowerQuestion)) {
-        return "The Theoretical Paper (Final Paper) is a 2500-3000 word research paper that serves as the capstone project. You'll develop an original argument using a specific theoretical or critical lens, supported by engagement with at least six scholarly sources. It's worth 25% of your grade and cannot be revised after the deadline.";
+    if (/midterm|mid term|exam/i.test(lowerQuestion)) {
+        return "The Midterm Exam includes multiple choice, short response, and a close reading written response. It covers lectures and readings. Administered in person on paper on 17 March 2026 during class. Worth 15% of your grade.";
     }
     
-    if (/conference presentation|presentation/i.test(lowerQuestion)) {
-        return "The Conference Presentation is a 5-7 minute conference-style presentation based on your final research paper, followed by a brief Q&A. This assignment translates written scholarship into oral communication using a visual aid. It's worth 10% of your grade.";
+    if (/research paper|final paper|theoretical paper|capstone/i.test(lowerQuestion)) {
+        return "The Theoretical Paper is 2500-3000 words, using a theoretical/critical lens and at least four scholarly sources. First submit a proposal with annotated bibliography. Worth 25% of your grade. No revisions after deadline.";
     }
     
     if (/quizzes|quiz/i.test(lowerQuestion)) {
-        return "Weekly quizzes encourage consistent engagement with course material and provide regular checkpoints for understanding. These open-note (but not open-computer) assessments are low-stakes and may be retaken to improve your score. They're worth 10% of your grade total and are given at the beginning of class using pen and paper.";
+        return "Reading quizzes open one week before class and close when class starts. Open-note/open-book. No makeups except for documented excused reasons. Worth 5% of your grade.";
     }
     
     if (/how many.*essays|writing assignments|assignments.*due|workload/i.test(lowerQuestion)) {
-        return "You'll complete: 1 Close Reading Paper (1250-1500 words), 6 Response Papers, 1 Annotated Bibliography, 1 Research Paper (2500-3000 words), weekly quizzes, and 1 Conference Presentation. See the syllabus for due dates and detailed requirements.";
+        return "Assignments include: Close Reading Paper, QHQs (10 of 15), Response Papers, Midterm Exam, Research Paper, and weekly quizzes. See syllabus for details and due dates.";
     }
     
     // GRADING
     if (/grading scale|how.*graded/i.test(lowerQuestion)) {
-        return "Grading scale: A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (Below 60%). Final grades are not rounded up.";
+        return "Grading scale: A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (Below 60%).";
     }
     
     if (/grade breakdown|grading breakdown|how much is.*worth|what percent of my grade is.*|weight.*assignments|grade.*based.*on|how.*get.*a|how.*pass.*class|how.*pass/i.test(lowerQuestion)) {
-        return "Grade composition: Close Reading Paper (20%), Research Paper (25%), Response Papers (15%), Annotated Bibliography (10%), Quizzes (10%), Conference Presentation (10%), Attendance and Participation (10%).";
+        return "Grade breakdown: Attendance/Participation (20%), Quizzes (5%), Midterm (15%), Close Reading Paper (15%), Research Paper (25%), QHQs (10%), Response Papers (10%).";
     }
     
     // POLICIES
     if (/late work|submit.*late|turn in.*late|hand in.*late|late.*turn.*in|late.*submit|late.*hand.*in/i.test(lowerQuestion)) {
-        return "Late work penalties: <1 hour (5%), 1 class day (10%), 2 class days (20%), >1 week (max 50%). One 48-hour 'Life Happens' extension available per semester (not for final essay or exams). If having technical difficulties, email your paper to show it was done on time, then submit to Canvas when able.";
+        return "Late work penalties: <1 hour (5%), <24 hours (10%), <1 week (20%), >1 week (max 50%). One 48-hour 'Life Happens' extension per semester (not for final paper).";
     }
     
-    if (/plagiarism|can i use AI|AI|academic integrity|cheating|turnitin/i.test(lowerQuestion)) {
-        return "Plagiarism, self-plagiarism, or unauthorized AI use results in a zero and possible course failure. Limited AI use for minor tasks is acceptable but must be cited. Using GenAI tools to generate content is not allowed. All submissions are checked through Turnitin, and you must submit version history for non-handwritten assignments. Any assignment flagged for AI content will automatically receive a zero.";
+    if (/plagiarism|ai|academic integrity|cheating|turnitin/i.test(lowerQuestion)) {
+        return "Plagiarism or unauthorized AI use results in a failing grade. Using GenAI to generate content is not allowed. All work is screened with AI detection tools. You must submit version history for non-handwritten assignments. AI-flagged work receives a zero.";
     }
     
     if (/communication policy|email|contact|office hours|how.*reach.*professor/i.test(lowerQuestion)) {
-        return "I respond to emails within 24 hours Monday-Friday (9-5). Weekend responses aren't guaranteed. Office hours: MW 10-11am in MHB510. Make sure to enable Canvas notifications. If you don't hear back within 24 hours on weekdays, please follow up!";
+        return "Email: liliana.desimone@csulb.edu. I respond within 24 hours Mon–Fri (9–5). Office hours: Tues/Thurs 12-2 p.m. in MHB510 + by appointment. Enable Canvas notifications.";
     }
     
     if (/technology policy|laptops|devices|phones|electronics in class/i.test(lowerQuestion)) {
-        return "You may use laptops/electronic devices for taking notes and reading course materials. Please avoid non-course related browsing as it distracts you and others. Phones should be silenced. I may ask you to leave if you're scrolling or talking over others, which counts as an absence.";
+        return "Laptops/devices allowed for notes and course materials. No non-course browsing, earbuds, or texting. Phones silenced. Disruptive use may result in being asked to leave and loss of participation points.";
     }
     
     if (/withdrawal policy|drop.*class|withdraw/i.test(lowerQuestion)) {
-        return "Withdrawals during the final three weeks require a serious, compelling reason beyond your control. You must officially file withdrawal paperwork with Enrollment Services regardless of attendance, otherwise you'll receive a 'WU' (unauthorized withdrawal) grade.";
+        return "Withdrawals during the final three weeks require serious, compelling reasons. You must file withdrawal paperwork with Enrollment Services or receive a 'WU' (unauthorized withdrawal).";
     }
     
     // RESOURCES
     if (/bmac|disability|accommodation|accessibility/i.test(lowerQuestion)) {
-        return "Students with disabilities must register with the Bob Murphy Access Center (BMAC) each semester and provide faculty with verification of accommodations as early as possible. BMAC is in the Shakarian Student Success Center, Room 110. Phone: (562) 985-5401, Email: bmac@csulb.edu.";
+        return "Students with disabilities must register with Bob Murphy Access Center (BMAC) each semester and provide accommodation verification early. Contact: (562) 985-5401, bmac@csulb.edu, Shakerian Student Success Center Rm 110.";
     }
     
     if (/resources|support|help|tutoring|writing center|library/i.test(lowerQuestion)) {
-        return "Campus resources include: Bob Murphy Access Center, Student Affairs, Health Services, Counseling, University Library, Writing Center, Technology Help Desk, and open computer labs (Horn Center and Spidell Technology Center). Printing costs 10 cents per page using your Beach ID card.";
+        return "See the 'Resources and Support' module on Canvas for academic and student support services (advising, health, counseling, etc.). Technical help: (562) 985-4959, helpdesk@csulb.edu.";
     }
     
     if (/computer.*lab|printing|software|technical support/i.test(lowerQuestion)) {
-        return "Open computer labs: Horn Center (lower campus) and Spidell Technology Center (Library). Printing: 10 cents/page using Beach ID card. Technical support: Technology Help Desk at (562) 985-4959, helpdesk@csulb.edu, or visit Horn Center/Library 5th Floor.";
+        return "Open computer labs: Horn Center and Spidell Technology Center (Library). Printing: 10 cents/page with Beach ID. Tech support: (562) 985-4959, helpdesk@csulb.edu.";
     }
     
     // DEFAULT RESPONSE
-    return "I'm not sure I understand. Try checking the syllabus, rephrasing your question, or asking your instructor during office hours (MW 10-11am in MHB510). You might ask about assignments, policies, grading, or resources.";
+    return "I'm not sure I understand. Try checking the syllabus, rephrasing your question, or emailing Professor De Simone at liliana.desimone@csulb.edu. You might ask about assignments, policies, grading, or resources.";
 }
     
     // Toggle chatbot visibility and show initial greeting
